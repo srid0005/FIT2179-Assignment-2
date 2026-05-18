@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malaysia's Flood Crisis | A Data Story (1965–2024)</title>
+  <meta name="description" content="A data-driven story of 60 years of flooding in Malaysia: where, when, who, and how costly.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+<!-- ============ HERO HEADER ============ -->
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow">A FIT3179 data story · Monash University Malaysia · May 2026</p>
+    <h1>Malaysia's Flood Crisis</h1>
+    <p class="subtitle">Monsoons are predictable. The scale of devastation is not.</p>
+    <p class="lede">
+      Every year, monsoon rains push Malaysia's rivers over their banks. Most years, a few thousand people are displaced. Some years, hundreds of thousands. And in 2021, a single week of rain in the Klang Valley caused <strong>RM 6.1 billion in losses</strong> &mdash; 0.40% of national GDP. This is the story of 60 years of flooding, in four acts.
+    </p>
+  </div>
+</header>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="section-nav">
+  <div class="container">
+    <a href="#act1">1. The Geography</a>
+    <a href="#act2">2. The Pattern</a>
+    <a href="#act3">3. The Human Cost</a>
+    <a href="#act4">4. A Deepening Crisis</a>
+  </div>
+</nav>
+
+<!-- ============ ACT 1: THE GEOGRAPHY ============ -->
+<section id="act1" class="act">
+  <div class="container">
+    <p class="act-label">Act 1</p>
+    <h2>Some states bear far more than their share</h2>
+    <p class="narrative">
+      Floods are not evenly spread across Malaysia. Four states &mdash; <strong>Johor, Pahang, Terengganu, and Kelantan</strong> &mdash; together account for nearly three out of every four recorded flood events since 1965. The pattern is dictated by geography: these are the states most exposed to the Northeast Monsoon and crossed by the country's largest river basins. Hover any state for the full count.
+    </p>
+
+    <div class="two-col">
+      <div class="chart-card">
+        <div id="vis-chart1" class="chart-container"></div>
+        <p class="caption">Use scroll to zoom · drag to pan</p>
+      </div>
+      <div class="chart-card">
+        <div id="vis-chart2" class="chart-container"></div>
+        <p class="caption">Darker bars mark the four hardest-hit states (18+ events).</p>
+      </div>
+    </div>
+
+    <p class="insight">
+      <span class="insight-label">Notice:</span> Despite their size, Sabah and Sarawak record fewer events in EM-DAT than the small east-coast peninsular states. River basin geography &mdash; not land area &mdash; drives flood exposure.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 2: THE PATTERN ============ -->
+<section id="act2" class="act">
+  <div class="container">
+    <p class="act-label">Act 2</p>
+    <h2>Floods follow the monsoon calendar</h2>
+    <p class="narrative">
+      Malaysia's floods are seasonal, not random. The <strong>Northeast Monsoon</strong> (November–March) lashes the east coast and Borneo with prolonged rain. The <strong>Southwest Monsoon</strong> (May–September) is gentler but still produces flash flooding. December is the single most dangerous month: 21 of 74 recorded floods began in December alone, and they were also the most severe.
+    </p>
+
+    <div class="chart-card chart-card--full">
+      <div id="vis-chart3" class="chart-container"></div>
+      <p class="caption">Each row is a state; each cell is a calendar month. Darker = more flood events. Filter by season using the dropdown above the chart.</p>
+    </div>
+
+    <div class="chart-card chart-card--full">
+      <div id="vis-chart4" class="chart-container"></div>
+      <p class="caption">Bubble size = number of events. Y-axis = average people affected per event (log scale).</p>
+    </div>
+
+    <p class="insight">
+      <span class="insight-label">Notice:</span> December has both the most events <em>and</em> the most damaging events &mdash; a single December flood affects an average of 62,361 people, more than ten times the annual mean of other months.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 3: THE HUMAN COST ============ -->
+<section id="act3" class="act">
+  <div class="container">
+    <p class="act-label">Act 3</p>
+    <h2>More events, more people, more often</h2>
+    <p class="narrative">
+      Since 2001, Malaysia has seen flooding accelerate sharply. Before 2001, only one or two events per year were significant enough to make EM-DAT's threshold. Since 2016, that figure is consistently four to eight events per year. The 2014 Kelantan floods and the 2021 Klang Valley floods stand out as the two worst single-year displacement events in modern Malaysian history.
+    </p>
+
+    <div class="chart-card chart-card--full">
+      <div id="vis-chart5" class="chart-container"></div>
+      <p class="caption">Bars (left axis) = events per year. Red line (right axis) = total people affected per year.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-card">
+        <div id="vis-chart6" class="chart-container"></div>
+        <p class="caption">Hover any bar for full location details. Drag the slider above the chart to see more or fewer events.</p>
+      </div>
+      <div class="chart-card">
+        <div id="vis-chart7" class="chart-container"></div>
+        <p class="caption">Click any flood-type in the legend to focus on it.</p>
+      </div>
+    </div>
+
+    <div class="chart-card chart-card--centred">
+      <div id="vis-chart8" class="chart-container chart-container--narrow"></div>
+      <p class="caption">Broad-scale monsoon floods dominate; flash floods are rarer but proportionally far more dangerous in urban areas.</p>
+    </div>
+
+    <p class="insight">
+      <span class="insight-label">Notice:</span> The five worst events of the past 60 years all happened in November or December &mdash; and four of them since 2014. The Northeast Monsoon is not getting wetter on average, but its extreme tails are growing.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ACT 4: A DEEPENING CRISIS ============ -->
+<section id="act4" class="act">
+  <div class="container">
+    <p class="act-label">Act 4</p>
+    <h2>Economic losses are shifting and growing</h2>
+    <p class="narrative">
+      Beyond the human toll, floods now cost Malaysia hundreds of millions of ringgit every year. The 2021 Klang Valley event was an order of magnitude worse than any other &mdash; RM 6.1 billion, or 0.40% of GDP. But 2024 tells a quieter, more troubling story: total losses rose to <strong>RM 933 million</strong>, with the burden shifting decisively from Selangor and Pahang to Kelantan, Kedah, and Terengganu.
+    </p>
+
+    <div class="chart-card chart-card--full">
+      <div id="vis-chart9" class="chart-container"></div>
+      <p class="caption">Log scale: the 2021 bar would be 10× the height of others on a linear axis. Hover for category breakdowns.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-card">
+        <div id="vis-chart10" class="chart-container"></div>
+        <p class="caption">Kelantan alone took 28% of the 2024 national loss.</p>
+      </div>
+      <div class="chart-card">
+        <div id="vis-chart11" class="chart-container"></div>
+        <p class="caption">Red lines slope up = state got worse 2022→2024.</p>
+      </div>
+    </div>
+
+    <p class="insight">
+      <span class="insight-label">Notice:</span> 12 of 16 states recorded <em>higher</em> losses in 2024 than 2022. Kedah's tripled. Pahang and Terengganu fell, but only because their 2022 figures were exceptionally high &mdash; both remain well above the national median.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="container">
+    <h2>The pattern is no longer a surprise</h2>
+    <p>
+      The monsoon comes every year. The rivers overflow every year. What changes is how prepared the country is &mdash; and which communities bear the worst of it. The data here covers 60 years; the next 60 will be shaped by how seriously we read it.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Author</h4>
+        <p>[Your Name] · [Your Student ID]<br>FIT3179 Data Visualisation 2 · Monash University Malaysia · May 2026</p>
+      </div>
+      <div>
+        <h4>Data sources</h4>
+        <p>
+          <a href="https://public.emdat.be" target="_blank" rel="noopener">EM-DAT</a>, CRED/UCLouvain — 74 Malaysia flood events 1965–2023<br>
+          <a href="https://open.dosm.gov.my/publications/flood_impact_2024" target="_blank" rel="noopener">DOSM</a> — Special Reports on Impact of Floods 2021–2024<br>
+          <a href="https://data.humdata.org/dataset/geoboundaries-admin-boundaries-for-malaysia" target="_blank" rel="noopener">geoBoundaries</a> via UN HDX — Malaysia ADM1 state boundaries (CC BY 4.0)
+        </p>
+      </div>
+      <div>
+        <h4>Tools &amp; acknowledgements</h4>
+        <p>
+          Built with <a href="https://vega.github.io/vega-lite/" target="_blank" rel="noopener">Vega-Lite v5</a>. Fonts: Playfair Display, Inter. Text refined for grammar with Claude (Anthropic); all visualisation design, data joins and analysis are the author's own work.
+        </p>
+        <p class="license">© 2026 [Your Name] · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ DATA + CHART SPECS ============ -->
+<script>
+// ============================================================================
+// INLINE DATA (extracted from EM-DAT + DOSM Excel files, state names normalised)
+// ============================================================================
+
+const stateFrequency = [{"State":"Johor","Event_Count":19,"Total_Affected":874814,"Avg_Affected_per_Event":46043},{"State":"Pahang","Event_Count":19,"Total_Affected":904288,"Avg_Affected_per_Event":47594},{"State":"Terengganu","Event_Count":18,"Total_Affected":648106,"Avg_Affected_per_Event":36006},{"State":"Kelantan","Event_Count":18,"Total_Affected":650813,"Avg_Affected_per_Event":36156},{"State":"Perak","Event_Count":11,"Total_Affected":493869,"Avg_Affected_per_Event":44897},{"State":"Melaka","Event_Count":9,"Total_Affected":245072,"Avg_Affected_per_Event":27230},{"State":"Selangor","Event_Count":8,"Total_Affected":410776,"Avg_Affected_per_Event":51347},{"State":"Sabah","Event_Count":8,"Total_Affected":425364,"Avg_Affected_per_Event":53170},{"State":"Kuala Lumpur","Event_Count":7,"Total_Affected":214902,"Avg_Affected_per_Event":30700},{"State":"Sarawak","Event_Count":7,"Total_Affected":32037,"Avg_Affected_per_Event":4577},{"State":"Kedah","Event_Count":6,"Total_Affected":52505,"Avg_Affected_per_Event":8751},{"State":"Negeri Sembilan","Event_Count":5,"Total_Affected":224702,"Avg_Affected_per_Event":44940},{"State":"Pulau Pinang","Event_Count":3,"Total_Affected":9019,"Avg_Affected_per_Event":3006},{"State":"Perlis","Event_Count":3,"Total_Affected":262412,"Avg_Affected_per_Event":87471}];
+
+const monsoonHeatmap = [{"State":"Johor","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":6},{"State":"Johor","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":1},{"State":"Johor","Month_Num":3,"Month_Name":"Mar","Season":"Transition","Events":1},{"State":"Johor","Month_Num":9,"Month_Name":"Sep","Season":"Transition","Events":1},{"State":"Johor","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":1},{"State":"Johor","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":2},{"State":"Johor","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":7},{"State":"Kedah","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":3},{"State":"Kedah","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":3},{"State":"Kelantan","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":2},{"State":"Kelantan","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":2},{"State":"Kelantan","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":1},{"State":"Kelantan","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":3},{"State":"Kelantan","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":10},{"State":"Kuala Lumpur","Month_Num":3,"Month_Name":"Mar","Season":"Transition","Events":1},{"State":"Kuala Lumpur","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":3},{"State":"Kuala Lumpur","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":1},{"State":"Kuala Lumpur","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":2},{"State":"Melaka","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":1},{"State":"Melaka","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":1},{"State":"Melaka","Month_Num":3,"Month_Name":"Mar","Season":"Transition","Events":1},{"State":"Melaka","Month_Num":5,"Month_Name":"May","Season":"SW Monsoon","Events":1},{"State":"Melaka","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":2},{"State":"Melaka","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":1},{"State":"Melaka","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":2},{"State":"Negeri Sembilan","Month_Num":3,"Month_Name":"Mar","Season":"Transition","Events":1},{"State":"Negeri Sembilan","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":2},{"State":"Negeri Sembilan","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":2},{"State":"Pahang","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":3},{"State":"Pahang","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":2},{"State":"Pahang","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":2},{"State":"Pahang","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":2},{"State":"Pahang","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":10},{"State":"Perak","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":2},{"State":"Perak","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":2},{"State":"Perak","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":4},{"State":"Perak","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":3},{"State":"Perlis","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":1},{"State":"Perlis","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":1},{"State":"Perlis","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":1},{"State":"Pulau Pinang","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":1},{"State":"Pulau Pinang","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":2},{"State":"Sabah","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":4},{"State":"Sabah","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":1},{"State":"Sabah","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":3},{"State":"Sarawak","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":1},{"State":"Sarawak","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":1},{"State":"Sarawak","Month_Num":4,"Month_Name":"Apr","Season":"Transition","Events":1},{"State":"Sarawak","Month_Num":5,"Month_Name":"May","Season":"SW Monsoon","Events":1},{"State":"Sarawak","Month_Num":6,"Month_Name":"Jun","Season":"SW Monsoon","Events":1},{"State":"Sarawak","Month_Num":9,"Month_Name":"Sep","Season":"Transition","Events":1},{"State":"Sarawak","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":1},{"State":"Selangor","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":2},{"State":"Selangor","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":2},{"State":"Selangor","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":1},{"State":"Selangor","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":3},{"State":"Terengganu","Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":2},{"State":"Terengganu","Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":2},{"State":"Terengganu","Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":1},{"State":"Terengganu","Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":3},{"State":"Terengganu","Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":10}];
+
+const annualSummary = [{"Year":1965,"Events":1,"Total_Deaths":6,"Total_Affected":300000,"Max_Affected":300000,"Avg_Affected_per_Event":300000},{"Year":1967,"Events":1,"Total_Deaths":50,"Total_Affected":140000,"Max_Affected":140000,"Avg_Affected_per_Event":140000},{"Year":1970,"Events":1,"Total_Deaths":61,"Total_Affected":243000,"Max_Affected":243000,"Avg_Affected_per_Event":243000},{"Year":1978,"Events":1,"Total_Deaths":0,"Total_Affected":3000,"Max_Affected":3000,"Avg_Affected_per_Event":3000},{"Year":1983,"Events":1,"Total_Deaths":10,"Total_Affected":15000,"Max_Affected":15000,"Avg_Affected_per_Event":15000},{"Year":1986,"Events":1,"Total_Deaths":11,"Total_Affected":25000,"Max_Affected":25000,"Avg_Affected_per_Event":25000},{"Year":1987,"Events":1,"Total_Deaths":3,"Total_Affected":2576,"Max_Affected":2576,"Avg_Affected_per_Event":2576},{"Year":1988,"Events":1,"Total_Deaths":27,"Total_Affected":60000,"Max_Affected":60000,"Avg_Affected_per_Event":60000},{"Year":1993,"Events":1,"Total_Deaths":30,"Total_Affected":25000,"Max_Affected":25000,"Avg_Affected_per_Event":25000},{"Year":1996,"Events":1,"Total_Deaths":0,"Total_Affected":418,"Max_Affected":418,"Avg_Affected_per_Event":418},{"Year":1998,"Events":1,"Total_Deaths":0,"Total_Affected":2500,"Max_Affected":2500,"Avg_Affected_per_Event":2500},{"Year":1999,"Events":1,"Total_Deaths":1,"Total_Affected":2000,"Max_Affected":2000,"Avg_Affected_per_Event":2000},{"Year":2000,"Events":1,"Total_Deaths":12,"Total_Affected":8000,"Max_Affected":8000,"Avg_Affected_per_Event":8000},{"Year":2001,"Events":4,"Total_Deaths":11,"Total_Affected":33200,"Max_Affected":18000,"Avg_Affected_per_Event":8300},{"Year":2003,"Events":3,"Total_Deaths":8,"Total_Affected":18800,"Max_Affected":13800,"Avg_Affected_per_Event":6267},{"Year":2004,"Events":3,"Total_Deaths":16,"Total_Affected":31038,"Max_Affected":15000,"Avg_Affected_per_Event":10346},{"Year":2005,"Events":2,"Total_Deaths":13,"Total_Affected":30600,"Max_Affected":30000,"Avg_Affected_per_Event":15300},{"Year":2006,"Events":4,"Total_Deaths":6,"Total_Affected":106518,"Max_Affected":100000,"Avg_Affected_per_Event":26630},{"Year":2007,"Events":2,"Total_Deaths":46,"Total_Affected":166533,"Max_Affected":137533,"Avg_Affected_per_Event":83266},{"Year":2008,"Events":2,"Total_Deaths":0,"Total_Affected":8000,"Max_Affected":6000,"Avg_Affected_per_Event":4000},{"Year":2009,"Events":2,"Total_Deaths":0,"Total_Affected":10875,"Max_Affected":9082,"Avg_Affected_per_Event":5438},{"Year":2011,"Events":1,"Total_Deaths":2,"Total_Affected":20000,"Max_Affected":20000,"Avg_Affected_per_Event":20000},{"Year":2013,"Events":1,"Total_Deaths":4,"Total_Affected":75000,"Max_Affected":75000,"Avg_Affected_per_Event":75000},{"Year":2014,"Events":1,"Total_Deaths":17,"Total_Affected":230000,"Max_Affected":230000,"Avg_Affected_per_Event":230000},{"Year":2015,"Events":1,"Total_Deaths":1,"Total_Affected":3000,"Max_Affected":3000,"Avg_Affected_per_Event":3000},{"Year":2016,"Events":4,"Total_Deaths":0,"Total_Affected":31841,"Max_Affected":25000,"Avg_Affected_per_Event":7960},{"Year":2017,"Events":3,"Total_Deaths":9,"Total_Affected":21981,"Max_Affected":13000,"Avg_Affected_per_Event":7327},{"Year":2018,"Events":2,"Total_Deaths":2,"Total_Affected":16900,"Max_Affected":12000,"Avg_Affected_per_Event":8450},{"Year":2019,"Events":4,"Total_Deaths":2,"Total_Affected":22477,"Max_Affected":15000,"Avg_Affected_per_Event":5619},{"Year":2020,"Events":5,"Total_Deaths":0,"Total_Affected":21883,"Max_Affected":9273,"Avg_Affected_per_Event":4377},{"Year":2021,"Events":8,"Total_Deaths":79,"Total_Affected":164641,"Max_Affected":120000,"Avg_Affected_per_Event":20580},{"Year":2022,"Events":5,"Total_Deaths":17,"Total_Affected":90625,"Max_Affected":60000,"Avg_Affected_per_Event":18125},{"Year":2023,"Events":4,"Total_Deaths":6,"Total_Affected":84187,"Max_Affected":46630,"Avg_Affected_per_Event":21047},{"Year":2024,"Events":2,"Total_Deaths":5,"Total_Affected":137410,"Max_Affected":137410,"Avg_Affected_per_Event":68705}];
+
+const yearBySubtype = [{"Year":1965,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":300000},{"Year":1967,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":140000},{"Year":1970,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":243000},{"Year":1978,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":3000},{"Year":1983,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":15000},{"Year":1986,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":25000},{"Year":1987,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":2576},{"Year":1988,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":60000},{"Year":1993,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":25000},{"Year":1996,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":418},{"Year":1998,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":2500},{"Year":1999,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":2000},{"Year":2000,"Flood_Type":"Flash flood","Events":1,"Total_Affected":8000},{"Year":2001,"Flood_Type":"Flash flood","Events":1,"Total_Affected":10000},{"Year":2001,"Flood_Type":"Flood (General)","Events":2,"Total_Affected":5200},{"Year":2001,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":18000},{"Year":2003,"Flood_Type":"Flash flood","Events":1,"Total_Affected":3000},{"Year":2003,"Flood_Type":"Riverine flood","Events":2,"Total_Affected":15800},{"Year":2004,"Flood_Type":"Riverine flood","Events":3,"Total_Affected":31038},{"Year":2005,"Flood_Type":"Flash flood","Events":2,"Total_Affected":30600},{"Year":2006,"Flood_Type":"Flash flood","Events":1,"Total_Affected":100000},{"Year":2006,"Flood_Type":"Riverine flood","Events":3,"Total_Affected":6518},{"Year":2007,"Flood_Type":"Riverine flood","Events":2,"Total_Affected":166533},{"Year":2008,"Flood_Type":"Flash flood","Events":1,"Total_Affected":6000},{"Year":2008,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":2000},{"Year":2009,"Flood_Type":"Riverine flood","Events":2,"Total_Affected":10875},{"Year":2011,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":20000},{"Year":2013,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":75000},{"Year":2014,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":230000},{"Year":2015,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":3000},{"Year":2016,"Flood_Type":"Flood (General)","Events":4,"Total_Affected":31841},{"Year":2017,"Flood_Type":"Flood (General)","Events":2,"Total_Affected":8981},{"Year":2017,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":13000},{"Year":2018,"Flood_Type":"Flash flood","Events":1,"Total_Affected":4900},{"Year":2018,"Flood_Type":"Flood (General)","Events":1,"Total_Affected":12000},{"Year":2019,"Flood_Type":"Flood (General)","Events":4,"Total_Affected":22477},{"Year":2020,"Flood_Type":"Flood (General)","Events":4,"Total_Affected":12610},{"Year":2020,"Flood_Type":"Riverine flood","Events":1,"Total_Affected":9273},{"Year":2021,"Flood_Type":"Flash flood","Events":3,"Total_Affected":125828},{"Year":2021,"Flood_Type":"Flood (General)","Events":5,"Total_Affected":38813},{"Year":2022,"Flood_Type":"Flood (General)","Events":5,"Total_Affected":90625},{"Year":2023,"Flood_Type":"Flood (General)","Events":4,"Total_Affected":84187}];
+
+const floodTypeTotals = [{"Flood_Type":"Flash flood","Events":11,"Total_Affected":288328},{"Flood_Type":"Flood (General)","Events":39,"Total_Affected":1037810},{"Flood_Type":"Riverine flood","Events":24,"Total_Affected":688455}];
+
+const monthlySeverity = [{"Month_Num":1,"Month_Name":"Jan","Season":"NE Monsoon","Events":13,"Total_Affected":371802,"Avg_Affected_per_Event":28600},{"Month_Num":2,"Month_Name":"Feb","Season":"NE Monsoon","Events":6,"Total_Affected":88854,"Avg_Affected_per_Event":14809},{"Month_Num":3,"Month_Name":"Mar","Season":"Transition","Events":2,"Total_Affected":10428,"Avg_Affected_per_Event":5214},{"Month_Num":4,"Month_Name":"Apr","Season":"Transition","Events":2,"Total_Affected":2500,"Avg_Affected_per_Event":1250},{"Month_Num":5,"Month_Name":"May","Season":"SW Monsoon","Events":1,"Total_Affected":5782,"Avg_Affected_per_Event":5782},{"Month_Num":6,"Month_Name":"Jun","Season":"SW Monsoon","Events":3,"Total_Affected":11210,"Avg_Affected_per_Event":3737},{"Month_Num":7,"Month_Name":"Jul","Season":"SW Monsoon","Events":3,"Total_Affected":1269,"Avg_Affected_per_Event":423},{"Month_Num":8,"Month_Name":"Aug","Season":"SW Monsoon","Events":2,"Total_Affected":14828,"Avg_Affected_per_Event":7414},{"Month_Num":9,"Month_Name":"Sep","Season":"Transition","Events":1,"Total_Affected":255,"Avg_Affected_per_Event":255},{"Month_Num":10,"Month_Name":"Oct","Season":"Transition","Events":6,"Total_Affected":22812,"Avg_Affected_per_Event":3802},{"Month_Num":11,"Month_Name":"Nov","Season":"NE Monsoon","Events":14,"Total_Affected":175263,"Avg_Affected_per_Event":12519},{"Month_Num":12,"Month_Name":"Dec","Season":"NE Monsoon","Events":21,"Total_Affected":1309590,"Avg_Affected_per_Event":62361}];
+
+const dosmAnnual = [{"Year":2021,"Living Quarters":1600.0,"Vehicles":982.8,"Business Premises":525.8,"Agriculture":90.6,"Manufacturing":891.4,"Public Assets & Infra":2009.4,"Total":6100.0,"% of GDP":0.4},{"Year":2022,"Living Quarters":157.4,"Vehicles":18.8,"Business Premises":50.3,"Agriculture":154.5,"Manufacturing":8.7,"Public Assets & Infra":232.7,"Total":622.4,"% of GDP":0.03},{"Year":2023,"Living Quarters":168.3,"Vehicles":22.3,"Business Premises":53.2,"Agriculture":120.6,"Manufacturing":10.3,"Public Assets & Infra":380.7,"Total":755.4,"% of GDP":0.04},{"Year":2024,"Living Quarters":372.2,"Vehicles":17.3,"Business Premises":54.1,"Agriculture":185.2,"Manufacturing":1.2,"Public Assets & Infra":303.4,"Total":933.4,"% of GDP":0.05}];
+
+const dosmState2024 = [{"State":"Kelantan","Year":2024,"Loss":263.0,"Pct_National":28.18},{"State":"Kedah","Year":2024,"Loss":193.7,"Pct_National":20.75},{"State":"Terengganu","Year":2024,"Loss":182.0,"Pct_National":19.5},{"State":"Johor","Year":2024,"Loss":59.0,"Pct_National":6.32},{"State":"Perak","Year":2024,"Loss":57.2,"Pct_National":6.13},{"State":"Pahang","Year":2024,"Loss":37.3,"Pct_National":4.0},{"State":"Sabah","Year":2024,"Loss":36.8,"Pct_National":3.94},{"State":"Sarawak","Year":2024,"Loss":27.4,"Pct_National":2.94},{"State":"Selangor","Year":2024,"Loss":22.6,"Pct_National":2.42},{"State":"Negeri Sembilan","Year":2024,"Loss":20.5,"Pct_National":2.2},{"State":"Melaka","Year":2024,"Loss":8.9,"Pct_National":0.95},{"State":"Pulau Pinang","Year":2024,"Loss":8.7,"Pct_National":0.93},{"State":"Kuala Lumpur","Year":2024,"Loss":8.1,"Pct_National":0.87},{"State":"Perlis","Year":2024,"Loss":5.1,"Pct_National":0.55},{"State":"Labuan","Year":2024,"Loss":2.4,"Pct_National":0.26},{"State":"Putrajaya","Year":2024,"Loss":0.7,"Pct_National":0.07}];
+
+const dosmStateLong = [{"State":"Johor","Year":2022,"Loss":4.4,"Change":54.6,"Direction":"Increased"},{"State":"Johor","Year":2024,"Loss":59.0,"Change":54.6,"Direction":"Increased"},{"State":"Kedah","Year":2022,"Loss":30.8,"Change":162.9,"Direction":"Increased"},{"State":"Kedah","Year":2024,"Loss":193.7,"Change":162.9,"Direction":"Increased"},{"State":"Kelantan","Year":2022,"Loss":153.1,"Change":109.9,"Direction":"Increased"},{"State":"Kelantan","Year":2024,"Loss":263.0,"Change":109.9,"Direction":"Increased"},{"State":"Kuala Lumpur","Year":2022,"Loss":3.4,"Change":4.7,"Direction":"Increased"},{"State":"Kuala Lumpur","Year":2024,"Loss":8.1,"Change":4.7,"Direction":"Increased"},{"State":"Labuan","Year":2022,"Loss":0.0,"Change":2.4,"Direction":"Increased"},{"State":"Labuan","Year":2024,"Loss":2.4,"Change":2.4,"Direction":"Increased"},{"State":"Melaka","Year":2022,"Loss":2.3,"Change":6.6,"Direction":"Increased"},{"State":"Melaka","Year":2024,"Loss":8.9,"Change":6.6,"Direction":"Increased"},{"State":"Negeri Sembilan","Year":2022,"Loss":21.0,"Change":-0.5,"Direction":"Decreased"},{"State":"Negeri Sembilan","Year":2024,"Loss":20.5,"Change":-0.5,"Direction":"Decreased"},{"State":"Pahang","Year":2022,"Loss":144.0,"Change":-106.7,"Direction":"Decreased"},{"State":"Pahang","Year":2024,"Loss":37.3,"Change":-106.7,"Direction":"Decreased"},{"State":"Perak","Year":2022,"Loss":14.9,"Change":42.3,"Direction":"Increased"},{"State":"Perak","Year":2024,"Loss":57.2,"Change":42.3,"Direction":"Increased"},{"State":"Perlis","Year":2022,"Loss":0.01,"Change":5.09,"Direction":"Increased"},{"State":"Perlis","Year":2024,"Loss":5.1,"Change":5.09,"Direction":"Increased"},{"State":"Pulau Pinang","Year":2022,"Loss":0.2,"Change":8.5,"Direction":"Increased"},{"State":"Pulau Pinang","Year":2024,"Loss":8.7,"Change":8.5,"Direction":"Increased"},{"State":"Putrajaya","Year":2022,"Loss":0.0,"Change":0.7,"Direction":"Increased"},{"State":"Putrajaya","Year":2024,"Loss":0.7,"Change":0.7,"Direction":"Increased"},{"State":"Sabah","Year":2022,"Loss":6.3,"Change":30.5,"Direction":"Increased"},{"State":"Sabah","Year":2024,"Loss":36.8,"Change":30.5,"Direction":"Increased"},{"State":"Sarawak","Year":2022,"Loss":1.3,"Change":26.1,"Direction":"Increased"},{"State":"Sarawak","Year":2024,"Loss":27.4,"Change":26.1,"Direction":"Increased"},{"State":"Selangor","Year":2022,"Loss":25.5,"Change":-2.9,"Direction":"Decreased"},{"State":"Selangor","Year":2024,"Loss":22.6,"Change":-2.9,"Direction":"Decreased"},{"State":"Terengganu","Year":2022,"Loss":215.2,"Change":-33.2,"Direction":"Decreased"},{"State":"Terengganu","Year":2024,"Loss":182.0,"Change":-33.2,"Direction":"Decreased"}];
+
+// Top 10 worst events — pre-derived from events_clean.csv (subset, sorted by Affected)
+const topEvents = [{"DisNo":"1965-0066-MYS","Year":1965,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Peninsular East coast","Deaths":6,"Affected":300000,"EventLabel":"Dec 1965"},{"DisNo":"1970-0070-MYS","Year":1970,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"West Malaysia, Capital","Deaths":61,"Affected":243000,"EventLabel":"Dec 1970"},{"DisNo":"2014-0494-MYS","Year":2014,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Sabah, Kelantan, Pahang, Terengganu, Perak, Johor, Selangor, Perlis","Deaths":17,"Affected":230000,"EventLabel":"Dec 2014"},{"DisNo":"1967-0002-MYS","Year":1967,"Month_Name":"Jan","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Kelantan, Trengganu","Deaths":50,"Affected":140000,"EventLabel":"Jan 1967"},{"DisNo":"2007-0021-MYS","Year":2007,"Month_Name":"Jan","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Johor, Pahang provinces","Deaths":17,"Affected":137533,"EventLabel":"Jan 2007"},{"DisNo":"2021-0821-MYS","Year":2021,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flash flood","Location":"Klang Valley: Pahang, Selangor, Terengganu, Kelantan, Johor, Negeri Sembilan, Sabah, Perak, KL","Deaths":56,"Affected":120000,"EventLabel":"Dec 2021"},{"DisNo":"2006-0680-MYS","Year":2006,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flash flood","Location":"Melaka, Negeri Sembilan, Pahang, Johor","Deaths":6,"Affected":100000,"EventLabel":"Dec 2006"},{"DisNo":"2013-0535-MYS","Year":2013,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Kuala Lumpur, Pahang, Terengganu, Johor, Kelantan","Deaths":4,"Affected":75000,"EventLabel":"Dec 2013"},{"DisNo":"1988-0509-MYS","Year":1988,"Month_Name":"Nov","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Kelantan + East coast states","Deaths":27,"Affected":60000,"EventLabel":"Nov 1988"},{"DisNo":"2022-0810-MYS","Year":2022,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Kelantan, Terengganu, Pahang, Johor, Perak","Deaths":8,"Affected":60000,"EventLabel":"Dec 2022"},{"DisNo":"2023-0120-MYS","Year":2023,"Month_Name":"Feb","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Johor, Pahang, Melaka, Negeri Sembilan","Deaths":4,"Affected":46630,"EventLabel":"Feb 2023"},{"DisNo":"2007-0611-MYS","Year":2007,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Johor, Kelantan, Pahang, Terengganu","Deaths":29,"Affected":29000,"EventLabel":"Dec 2007"},{"DisNo":"2022-0119-MYS","Year":2022,"Month_Name":"Feb","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Kelantan, Pahang, Terengganu","Deaths":6,"Affected":26000,"EventLabel":"Feb 2022"},{"DisNo":"1986-0136-MYS","Year":1986,"Month_Name":"Nov","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"East Coast: Terengganu, Kelantan","Deaths":11,"Affected":25000,"EventLabel":"Nov 1986"},{"DisNo":"1993-0234-MYS","Year":1993,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Riverine flood","Location":"Kelantan, Terengganu, Pahang, Perak, Johor, Sabah","Deaths":30,"Affected":25000,"EventLabel":"Dec 1993"},{"DisNo":"2016-0516-MYS","Year":2016,"Month_Name":"Dec","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Kelantan, Terengganu, Perak, Pahang, Johor, Sabah, Selangor","Deaths":0,"Affected":25000,"EventLabel":"Dec 2016"},{"DisNo":"2021-0028-MYS","Year":2021,"Month_Name":"Jan","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Johor, Pahang, Terengganu, Sabah, Kelantan, Selangor, Perak","Deaths":8,"Affected":23776,"EventLabel":"Jan 2021"},{"DisNo":"2017-0224-MYS","Year":2017,"Month_Name":"Jan","Season":"NE Monsoon","Flood_Type":"Flood (General)","Location":"Kelantan, Terengganu, Johor, Pahang, Melaka, Selangor, Perak, Sabah","Deaths":0,"Affected":5481,"EventLabel":"Jan 2017"},{"DisNo":"2018-0063-MYS","Year":2018,"Month_Name":"Feb","Season":"NE Monsoon","Flood_Type":"Flash flood","Location":"Samarahan, Bintulu, Serian, Mukah, Limbang, Sarikei (Sarawak)","Deaths":0,"Affected":4900,"EventLabel":"Feb 2018"},{"DisNo":"2021-0524-MYS","Year":2021,"Month_Name":"Aug","Season":"SW Monsoon","Flood_Type":"Flash flood","Location":"Yan, Kuala Muda, Bandar Baharu (Kedah)","Deaths":7,"Affected":4828,"EventLabel":"Aug 2021"}];
+
+// ============================================================================
+// GLOBAL CONFIG — applied to every chart for consistent typography & data-ink
+// ============================================================================
+const baseConfig = {
+  font: "Inter, system-ui, sans-serif",
+  background: "transparent",
+  view: {stroke: "transparent"},
+  axis: {
+    labelFontSize: 11,
+    titleFontSize: 12,
+    titleFontWeight: 500,
+    titlePadding: 10,
+    grid: false,
+    domain: false,
+    ticks: false,
+    labelColor: "#444",
+    titleColor: "#222"
+  },
+  legend: {
+    labelFontSize: 11,
+    titleFontSize: 12,
+    titleFontWeight: 500,
+    titleColor: "#222"
+  },
+  title: {
+    fontSize: 16,
+    font: "Playfair Display, serif",
+    fontWeight: 700,
+    anchor: "start",
+    color: "#1a237e",
+    subtitleFontSize: 12,
+    subtitleColor: "#666",
+    subtitleFont: "Inter, system-ui, sans-serif"
+  }
+};
+
+const embedOptions = {
+  actions: {export: true, source: false, compiled: false, editor: false},
+  renderer: "svg"
+};
+
+// ============================================================================
+// CHART 1 — CHOROPLETH: Flood Frequency by State (FIXED — no zoom params)
+// ============================================================================
+const chart1 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 460,
+  "title": {
+    "text": "Where flooding strikes most often",
+    "subtitle": "Recorded flood events by state, 1965–2023"
+  },
+  "data": {"url": "malaysia-states-fixed.json", "format": {"property": "features"}},
+  "transform": [
+    {
+      "lookup": "properties.shapeName",
+      "from": {
+        "data": {"values": stateFrequency},
+        "key": "State",
+        "fields": ["Event_Count", "Total_Affected", "Avg_Affected_per_Event"]
+      }
+    }
+  ],
+  "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
+  "encoding": {
+    "color": {
+      "field": "Event_Count",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "title": "Floods recorded",
+      "legend": {"orient": "right"}
+    },
+    "tooltip": [
+      {"field": "properties.shapeName", "type": "nominal", "title": "State"},
+      {"field": "Event_Count", "type": "quantitative", "title": "Recorded floods"},
+      {"field": "Total_Affected", "type": "quantitative", "title": "People affected", "format": ","},
+      {"field": "Avg_Affected_per_Event", "type": "quantitative", "title": "Avg per event", "format": ","}
+    ]
+  },
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart1", chart1, embedOptions);
+
+// ============================================================================
+// CHART 2 — RANKED BAR: Top Flood-Prone States
+// ============================================================================
+const chart2 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 460,
+  "title": {
+    "text": "Top flood-prone states",
+    "subtitle": "Total recorded events since 1965"
+  },
+  "data": {"values": stateFrequency},
+  "mark": {"type": "bar", "cornerRadiusEnd": 3},
+  "encoding": {
+    "y": {"field": "State", "type": "nominal", "sort": "-x", "title": null,
+          "axis": {"labelFontSize": 11}},
+    "x": {"field": "Event_Count", "type": "quantitative", "title": "Recorded floods",
+          "axis": {"tickMinStep": 1}},
+    "color": {
+      "condition": {"test": "datum.Event_Count >= 18", "value": "#0d47a1"},
+      "value": "#90caf9"
+    },
+    "tooltip": [
+      {"field": "State", "type": "nominal"},
+      {"field": "Event_Count", "type": "quantitative", "title": "Floods"},
+      {"field": "Total_Affected", "type": "quantitative", "title": "People affected", "format": ","},
+      {"field": "Avg_Affected_per_Event", "type": "quantitative", "title": "Avg per event", "format": ","}
+    ]
+  },
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart2", chart2, embedOptions);
+
+// ============================================================================
+// CHART 3 — HEATMAP: Month × State (with season dropdown filter)
+// ============================================================================
+const chart3 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+  "title": {
+    "text": "When do floods strike each state?",
+    "subtitle": "Flood events by state and calendar month (1965–2023). Filter by season using the dropdown."
+  },
+  "data": {"values": monsoonHeatmap},
+  "params": [
+    {
+      "name": "seasonFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "NE Monsoon", "SW Monsoon", "Transition"],
+        "labels": ["All seasons", "Northeast Monsoon (Nov–Mar)", "Southwest Monsoon (May–Sep)", "Inter-monsoon (Apr / Sep–Oct)"],
+        "name": "Season filter:  "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "seasonFilter == 'All' || datum.Season == seasonFilter"}
+  ],
+  "mark": {"type": "rect", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "x": {
+      "field": "Month_Name", "type": "nominal", "title": null,
+      "sort": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      "axis": {"labelAngle": 0, "labelFontSize": 11}
+    },
+    "y": {
+      "field": "State", "type": "nominal", "title": null,
+      "sort": {"op": "sum", "field": "Events", "order": "descending"}
+    },
+    "color": {
+      "field": "Events", "type": "quantitative",
+      "scale": {"scheme": "oranges"},
+      "title": "Flood count",
+      "legend": {"orient": "right"}
+    },
+    "tooltip": [
+      {"field": "State", "type": "nominal"},
+      {"field": "Month_Name", "type": "nominal", "title": "Month"},
+      {"field": "Season", "type": "nominal"},
+      {"field": "Events", "type": "quantitative", "title": "Floods"}
+    ]
+  },
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart3", chart3, embedOptions);
+
+// ============================================================================
+// CHART 4 — BUBBLE: Monthly Severity (avg affected per event, log scale)
+// ============================================================================
+const chart4 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "title": {
+    "text": "December is catastrophic, not just frequent",
+    "subtitle": "Bubble size = number of events. Y-axis = average people affected per event (log scale)."
+  },
+  "data": {"values": monthlySeverity},
+  "layer": [
+    {
+      "mark": {"type": "circle", "stroke": "white", "strokeWidth": 1.5, "opacity": 0.88},
+      "encoding": {
+        "x": {
+          "field": "Month_Num", "type": "ordinal", "title": null,
+          "axis": {
+            "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value-1]",
+            "labelAngle": 0, "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "Avg_Affected_per_Event", "type": "quantitative",
+          "scale": {"type": "log"},
+          "title": "Avg people affected per event (log)",
+          "axis": {"format": "~s"}
+        },
+        "size": {
+          "field": "Events", "type": "quantitative",
+          "scale": {"range": [120, 1800]},
+          "title": "Number of events",
+          "legend": {"orient": "right"}
+        },
+        "color": {
+          "field": "Season", "type": "nominal",
+          "scale": {"domain": ["NE Monsoon", "SW Monsoon", "Transition"],
+                    "range": ["#1a237e", "#d32f2f", "#90a4ae"]},
+          "legend": {"orient": "right"}
+        },
+        "tooltip": [
+          {"field": "Month_Name", "type": "nominal", "title": "Month"},
+          {"field": "Season", "type": "nominal"},
+          {"field": "Events", "type": "quantitative"},
+          {"field": "Total_Affected", "type": "quantitative", "format": ","},
+          {"field": "Avg_Affected_per_Event", "type": "quantitative", "title": "Avg per event", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Month_Num == 12"}],
+      "mark": {"type": "text", "dy": -28, "fontSize": 11, "fontWeight": "bold", "color": "#1a237e"},
+      "encoding": {
+        "x": {"field": "Month_Num", "type": "ordinal"},
+        "y": {"field": "Avg_Affected_per_Event", "type": "quantitative"},
+        "text": {"value": "62,361 avg/event"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Month_Num == 1"}],
+      "mark": {"type": "text", "dy": -22, "fontSize": 11, "fontWeight": "bold", "color": "#1a237e"},
+      "encoding": {
+        "x": {"field": "Month_Num", "type": "ordinal"},
+        "y": {"field": "Avg_Affected_per_Event", "type": "quantitative"},
+        "text": {"value": "Jan still risky"}
+      }
+    }
+  ],
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart4", chart4, embedOptions);
+
+// ============================================================================
+// CHART 5 — LAYERED BAR + LINE: Annual Events and Affected (dual axis)
+// ============================================================================
+const chart5 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "title": {
+    "text": "Flood frequency and human cost are both rising",
+    "subtitle": "Annual events (bars) and total people affected (line). 1965–2024."
+  },
+  "data": {"values": annualSummary},
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal", "title": null,
+          "axis": {"labelAngle": -45, "labelOverlap": "greedy", "labelFontSize": 9}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#90caf9", "cornerRadiusEnd": 2},
+      "encoding": {
+        "y": {"field": "Events", "type": "quantitative",
+              "title": "Number of flood events",
+              "axis": {"titleColor": "#1976d2", "tickMinStep": 1}},
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Events", "type": "quantitative"},
+          {"field": "Total_Affected", "type": "quantitative", "format": ","},
+          {"field": "Total_Deaths", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "#d32f2f", "strokeWidth": 2.5,
+               "point": {"filled": true, "size": 55, "color": "#d32f2f"}},
+      "encoding": {
+        "y": {"field": "Total_Affected", "type": "quantitative",
+              "title": "Total people affected",
+              "axis": {"orient": "right", "titleColor": "#d32f2f", "format": "~s"}}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Year == 2021"}],
+      "mark": {"type": "text", "dy": -14, "fontSize": 10, "fontWeight": "bold", "color": "#d32f2f"},
+      "encoding": {
+        "y": {"field": "Total_Affected", "type": "quantitative"},
+        "text": {"value": "Dec 2021 Klang Valley"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Year == 2014"}],
+      "mark": {"type": "text", "dy": -14, "fontSize": 10, "fontWeight": "bold", "color": "#d32f2f"},
+      "encoding": {
+        "y": {"field": "Total_Affected", "type": "quantitative"},
+        "text": {"value": "Kelantan 2014"}
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}},
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart5", chart5, embedOptions);
+
+// ============================================================================
+// CHART 6 — RANKED BAR: Top N Worst Events (with slider)
+// ============================================================================
+const chart6 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+  "title": {
+    "text": "The most devastating flood events on record",
+    "subtitle": "Drag the slider to change how many events to show"
+  },
+  "data": {"values": topEvents},
+  "params": [
+    {
+      "name": "topN", "value": 10,
+      "bind": {"input": "range", "min": 5, "max": 20, "step": 1, "name": "Show top N:  "}
+    }
+  ],
+  "transform": [
+    {"window": [{"op": "rank", "as": "rank"}],
+     "sort": [{"field": "Affected", "order": "descending"}]},
+    {"filter": "datum.rank <= topN"}
+  ],
+  "encoding": {
+    "y": {"field": "EventLabel", "type": "nominal", "sort": "-x", "title": null,
+          "axis": {"labelFontSize": 11}},
+    "x": {"field": "Affected", "type": "quantitative", "title": "People affected",
+          "axis": {"format": ","}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "cornerRadiusEnd": 3},
+      "encoding": {
+        "color": {
+          "field": "Year", "type": "quantitative",
+          "scale": {"scheme": "reds"},
+          "legend": {"title": "Year", "orient": "right"}
+        },
+        "tooltip": [
+          {"field": "EventLabel", "type": "nominal", "title": "Event"},
+          {"field": "Flood_Type", "type": "nominal"},
+          {"field": "Season", "type": "nominal"},
+          {"field": "Affected", "type": "quantitative", "format": ","},
+          {"field": "Deaths", "type": "quantitative"},
+          {"field": "Location", "type": "nominal"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dx": 4, "align": "left", "fontSize": 10, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "Affected", "type": "quantitative", "format": ","},
+        "color": {"value": "#333"}
+      }
+    }
+  ],
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart6", chart6, embedOptions);
+
+// ============================================================================
+// CHART 7 — STACKED AREA: Affected over time, by flood subtype (legend-click)
+// ============================================================================
+const chart7 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+  "title": {
+    "text": "Different flood types, growing impact",
+    "subtitle": "People affected per year, stacked by subtype. Click the legend to focus on a type."
+  },
+  "data": {"values": yearBySubtype},
+  "params": [
+    {
+      "name": "typeHighlight",
+      "select": {"type": "point", "fields": ["Flood_Type"]},
+      "bind": "legend"
+    }
+  ],
+  "encoding": {
+    "x": {"field": "Year", "type": "quantitative",
+          "axis": {"format": "d", "title": null}},
+    "y": {"field": "Total_Affected", "type": "quantitative", "stack": "zero",
+          "title": "People affected", "axis": {"format": "~s"}},
+    "color": {
+      "field": "Flood_Type", "type": "nominal",
+      "scale": {"domain": ["Flood (General)", "Riverine flood", "Flash flood"],
+                "range": ["#1a237e", "#1976d2", "#d32f2f"]},
+      "title": "Flood type",
+      "legend": {"orient": "top-right"}
+    },
+    "tooltip": [
+      {"field": "Year", "type": "quantitative"},
+      {"field": "Flood_Type", "type": "nominal"},
+      {"field": "Events", "type": "quantitative"},
+      {"field": "Total_Affected", "type": "quantitative", "format": ","}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {"type": "area", "interpolate": "monotone"},
+      "encoding": {
+        "opacity": {
+          "condition": {"param": "typeHighlight", "value": 0.9},
+          "value": 0.15
+        }
+      }
+    }
+  ],
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart7", chart7, embedOptions);
+
+// ============================================================================
+// CHART 8 — DONUT: Flood Type Composition (% share)
+// ============================================================================
+const chart8 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "title": {
+    "text": "Half of all events are broad monsoon floods",
+    "subtitle": "Share of recorded events by subtype, 1965–2023"
+  },
+  "data": {"values": floodTypeTotals},
+  "transform": [
+    {"joinaggregate": [{"op": "sum", "field": "Events", "as": "TotalEvents"}]},
+    {"calculate": "datum.Events / datum.TotalEvents * 100", "as": "Pct"},
+    {"calculate": "round(datum.Pct) + '%'", "as": "PctLabel"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 70, "outerRadius": 130,
+               "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "theta": {"field": "Events", "type": "quantitative", "stack": true},
+        "color": {
+          "field": "Flood_Type", "type": "nominal",
+          "scale": {"domain": ["Flood (General)", "Riverine flood", "Flash flood"],
+                    "range": ["#1a237e", "#1976d2", "#d32f2f"]},
+          "title": "Flood type"
+        },
+        "tooltip": [
+          {"field": "Flood_Type", "type": "nominal"},
+          {"field": "Events", "type": "quantitative"},
+          {"field": "Pct", "type": "quantitative", "format": ".1f", "title": "% of total"},
+          {"field": "Total_Affected", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "radius": 155, "fontSize": 12, "fontWeight": "bold"},
+      "encoding": {
+        "theta": {"field": "Events", "type": "quantitative", "stack": true},
+        "text": {"field": "PctLabel", "type": "nominal"},
+        "color": {"value": "#333"}
+      }
+    }
+  ],
+  "view": {"stroke": null},
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart8", chart8, embedOptions);
+
+// ============================================================================
+// CHART 9 — BAR: National Economic Losses (FIXED — log scale with zero:false)
+// ============================================================================
+const chart9 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "title": {
+    "text": "RM 6.1 billion: the 2021 Klang Valley shock",
+    "subtitle": "National flood losses (RM million), 2021–2024 — log scale to fit the 2021 outlier"
+  },
+  "data": {"values": dosmAnnual},
+  "layer": [
+    {
+      "mark": {"type": "bar", "cornerRadiusEnd": 4},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal", "title": null,
+              "axis": {"labelAngle": 0, "labelFontSize": 13, "labelFontWeight": "bold"}},
+        "y": {"field": "Total", "type": "quantitative",
+              "title": "Total loss (RM million, log scale)",
+              "scale": {"type": "log", "domainMin": 100},
+              "axis": {"format": "~s"}},
+        "color": {
+          "condition": {"test": "datum.Year == 2021", "value": "#d32f2f"},
+          "value": "#1976d2"
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Total", "type": "quantitative", "title": "Total RM mil", "format": ",.1f"},
+          {"field": "% of GDP", "type": "quantitative", "format": ".2f", "title": "% of GDP"},
+          {"field": "Living Quarters", "type": "quantitative", "format": ",.1f"},
+          {"field": "Public Assets & Infra", "type": "quantitative", "format": ",.1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -10, "fontSize": 11, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+    "y": {"field": "Total", "type": "quantitative",
+      "scale": {"type": "log", "domainMin": 100}},
+        "text": {"field": "Total", "type": "quantitative", "format": ",.0f"},
+        "color": {"value": "#333"}
+      }
+    }
+  ],
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart9", chart9, embedOptions);
+
+// ============================================================================
+// CHART 10 — CHOROPLETH: 2024 State Losses (FIXED — no zoom params)
+// ============================================================================
+const chart10 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 460,
+  "title": {
+    "text": "Where 2024's losses landed",
+    "subtitle": "Total flood losses by state, 2024 (RM million, log colour scale)"
+  },
+  "data": {"url": "malaysia-states-fixed.json", "format": {"property": "features"}},
+  "transform": [
+    {
+      "lookup": "properties.shapeName",
+      "from": {
+        "data": {"values": dosmState2024},
+        "key": "State",
+        "fields": ["Loss", "Pct_National"]
+      }
+    }
+  ],
+  "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
+  "encoding": {
+    "color": {
+      "field": "Loss", "type": "quantitative",
+      "scale": {"scheme": "reds", "type": "log"},
+      "title": "Loss (RM mil)",
+      "legend": {"orient": "right"}
+    },
+    "tooltip": [
+      {"field": "properties.shapeName", "type": "nominal", "title": "State"},
+      {"field": "Loss", "type": "quantitative", "format": ",.1f", "title": "Loss (RM mil)"},
+      {"field": "Pct_National", "type": "quantitative", "format": ".1f", "title": "% of national"}
+    ]
+  },
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart10", chart10, embedOptions);
+
+// ============================================================================
+// CHART 11 — SLOPE CHART: 2022 → 2024 state losses (LEGEND FILTER — no tuple signals)
+// Note: This avoids Vega-Lite's legend-bound selection tuple signal duplication in layered charts.
+// ============================================================================
+const chart11 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 460,
+  "title": {
+    "text": "Which states got worse — and which improved?",
+    "subtitle": "Total flood losses (RM mil) 2022 → 2024. Click legend to filter direction."
+  },
+  "data": {"values": dosmStateLong},
+  "params": [
+    {
+      "name": "dir",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Increased", "Decreased"],
+        "name": "Direction: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "dir == 'All' || datum.Direction == dir"}
+  ],
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal", "title": null,
+          "scale": {"padding": 0.5},
+          "axis": {"labelAngle": 0, "labelFontSize": 12, "labelFontWeight": "bold"}},
+    "y": {"field": "Loss", "type": "quantitative", "title": "Loss (RM million)"},
+    "color": {
+      "field": "Direction", "type": "nominal",
+      "scale": {"domain": ["Increased", "Decreased"], "range": ["#d32f2f", "#1976d2"]},
+      "title": null,
+      "legend": {"orient": "top-right"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 2.2},
+      "encoding": {"detail": {"field": "State"}}
+    },
+    {
+      "mark": {"type": "circle", "size": 90},
+      "encoding": {
+        "tooltip": [
+          {"field": "State", "type": "nominal"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Loss", "type": "quantitative", "format": ",.1f", "title": "Loss (RM mil)"},
+          {"field": "Change", "type": "quantitative", "format": "+,.1f", "title": "Change RM mil"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Year == 2024 && datum.Loss > 20"}],
+      "mark": {"type": "text", "dx": 8, "align": "left", "fontSize": 10, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "State", "type": "nominal"},
+        "color": {"value": "#333"}
+      }
+    }
+  ],
+  "config": baseConfig
+};
+vegaEmbed("#vis-chart11", chart11, embedOptions);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+/* ============================================================================
+   GLOBAL RESET & BASE
+   ============================================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #1f2630;
+  background-color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: #1a237e; text-decoration: underline; text-decoration-thickness: 1px; }
+a:hover { color: #d32f2f; }
+
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #1a237e;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+}
+
+p { margin: 0 0 1rem 0; max-width: 70ch; }
+
+strong { color: #1a237e; font-weight: 700; }
+
+/* ============================================================================
+   CONTAINER & LAYOUT
+   ============================================================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin: 32px 0;
+}
+
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; gap: 28px; }
+  .container { padding: 0 20px; }
+}
+
+/* ============================================================================
+   HERO HEADER
+   ============================================================================ */
+.hero {
+  background: linear-gradient(135deg, #0d1b3d 0%, #1a237e 50%, #283593 100%);
+  color: #fff;
+  padding: 80px 0 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(211,47,47,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero .eyebrow {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: #90caf9;
+  margin: 0 0 12px 0;
+  max-width: none;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.02em;
+}
+
+.hero .subtitle {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  color: #ffcdd2;
+  margin: 0 0 28px 0;
+  font-weight: 400;
+  max-width: 65ch;
+}
+
+.hero .lede {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.92);
+  max-width: 70ch;
+  line-height: 1.7;
+}
+
+.hero .lede strong { color: #fff; background: rgba(211,47,47,0.32); padding: 1px 6px; border-radius: 3px; }
+
+/* ============================================================================
+   SECTION NAV
+   ============================================================================ */
+.section-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.section-nav .container {
+  display: flex;
+  gap: 36px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.section-nav a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.section-nav a:hover { color: #1a237e; }
+
+/* ============================================================================
+   ACTS / SECTIONS
+   ============================================================================ */
+.act {
+  padding: 80px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.act-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #d32f2f;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.act h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+  max-width: 24ch;
+}
+
+.narrative {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #2a3340;
+  margin-bottom: 32px;
+  max-width: 68ch;
+}
+
+.insight {
+  background: #fff8e1;
+  border-left: 4px solid #ffa726;
+  padding: 18px 24px;
+  margin: 36px 0 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  border-radius: 0 4px 4px 0;
+  max-width: 80ch;
+}
+
+.insight-label {
+  font-weight: 700;
+  color: #e65100;
+  margin-right: 4px;
+}
+
+/* ============================================================================
+   CHART CARDS
+   ============================================================================ */
+.chart-card {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 24px 24px 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.chart-card--full {
+  margin: 32px 0;
+}
+
+.chart-card--centred {
+  margin: 32px auto;
+  max-width: 600px;
+}
+
+.chart-container {
+  width: 100%;
+  min-height: 380px;
+}
+
+.chart-container--narrow {
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.caption {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 12px 0 0 0;
+  font-style: italic;
+  max-width: 70ch;
+}
+
+/* ============================================================================
+   CLOSING + FOOTER
+   ============================================================================ */
+.closing {
+  background: #1a237e;
+  color: #fff;
+  padding: 70px 0;
+  text-align: center;
+}
+
+.closing h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 18px;
+}
+
+.closing p {
+  color: rgba(255,255,255,0.88);
+  max-width: 65ch;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+footer {
+  background: #1f2937;
+  color: #cbd5e1;
+  padding: 50px 0 30px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+footer h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+footer p { color: #cbd5e1; max-width: 100%; }
+footer a { color: #90caf9; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1.4fr;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.license {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ============================================================================
+   VEGA-LITE WIDGET STYLING (sliders, dropdowns)
+   ============================================================================ */
+form.vega-bindings {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  padding: 8px 0 16px 0;
+  color: #444;
+}
+
+form.vega-bindings label {
+  display: inline-block;
+  margin-right: 14px;
+  font-weight: 500;
+}
+
+form.vega-bindings input[type="range"] {
+  vertical-align: middle;
+  margin: 0 6px;
+  accent-color: #1a237e;
+}
+
+form.vega-bindings select {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  color: #1f2630;
+  cursor: pointer;
+}
