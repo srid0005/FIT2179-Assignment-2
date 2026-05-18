@@ -603,10 +603,17 @@ const chart7 = {
   "data": {"values": yearBySubtype},
   "params": [
     {
-      "name": "typeHighlight",
-      "select": {"type": "point", "fields": ["Flood_Type"]},
-      "bind": "legend"
+      "name": "floodType",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Flood (General)", "Riverine flood", "Flash flood"],
+        "name": "Flood type: "
+      }
     }
+  ],
+  "transform": [
+    {"filter": "floodType == 'All' || datum.Flood_Type == floodType"}
   ],
   "encoding": {
     "x": {"field": "Year", "type": "quantitative",
@@ -627,17 +634,7 @@ const chart7 = {
       {"field": "Total_Affected", "type": "quantitative", "format": ","}
     ]
   },
-  "layer": [
-    {
-      "mark": {"type": "area", "interpolate": "monotone"},
-      "encoding": {
-        "opacity": {
-          "condition": {"param": "typeHighlight", "value": 0.9},
-          "value": 0.15
-        }
-      }
-    }
-  ],
+  "mark": {"type": "area", "interpolate": "monotone"},
   "config": baseConfig
 };
 vegaEmbed("#vis-chart7", chart7, embedOptions);
