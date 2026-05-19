@@ -12,6 +12,8 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <link rel="icon" href="data:,">
+
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
@@ -274,21 +276,22 @@ const chart1 = {
     "text": "Where flooding strikes most often",
     "subtitle": "Recorded flood events by state, 1965–2023"
   },
-  "data": {"url": "malaysia-states-fixed.json"},
+  "data": {"values": stateFrequency},
   "transform": [
-    {"calculate": "datum.properties.shapeName", "as": "State"},
     {
       "lookup": "State",
       "from": {
-        "data": {"values": stateFrequency},
-        "key": "State",
-        "fields": ["Event_Count", "Total_Affected", "Avg_Affected_per_Event"]
-      }
+        "data": {"url": "malaysia-states-fixed.json", "format": {"type": "json", "property": "features"}},
+        "key": "properties.shapeName",
+        "fields": ["geometry", "properties"]
+      },
+      "as": ["geometry", "properties"]
     }
   ],
   "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
   "encoding": {
+    "shape": {"field": "geometry", "type": "geojson"},
     "color": {
       "field": "Event_Count",
       "type": "quantitative",
@@ -752,21 +755,22 @@ const chart10 = {
     "text": "Where 2024's losses landed",
     "subtitle": "Total flood losses by state, 2024 (RM million, log colour scale)"
   },
-  "data": {"url": "malaysia-states-fixed.json"},
+  "data": {"values": dosmState2024},
   "transform": [
-    {"calculate": "datum.properties.shapeName", "as": "State"},
     {
       "lookup": "State",
       "from": {
-        "data": {"values": dosmState2024},
-        "key": "State",
-        "fields": ["Loss", "Pct_National"]
-      }
+        "data": {"url": "malaysia-states-fixed.json", "format": {"type": "json", "property": "features"}},
+        "key": "properties.shapeName",
+        "fields": ["geometry", "properties"]
+      },
+      "as": ["geometry", "properties"]
     }
   ],
   "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
   "encoding": {
+    "shape": {"field": "geometry", "type": "geojson"},
     "color": {
       "field": "Loss", "type": "quantitative",
       "scale": {"scheme": "reds", "type": "log"},
