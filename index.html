@@ -288,6 +288,7 @@ const chart1 = {
       "as": ["geometry", "properties"]
     }
   ],
+  
   "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
   "encoding": {
@@ -714,8 +715,9 @@ const chart9 = {
               "axis": {"labelAngle": 0, "labelFontSize": 13, "labelFontWeight": "bold"}},
         "y": {"field": "Total", "type": "quantitative",
               "title": "Total loss (RM million, log scale)",
-              "scale": {"type": "log", "domainMin": 100},
+      "scale": {"type": "log", "base": 10, "domainMin": 100},
               "axis": {"format": "~s"}},
+        "y2": {"datum": 100},
         "color": {
           "condition": {"test": "datum.Year == 2021", "value": "#d32f2f"},
           "value": "#1976d2"
@@ -734,7 +736,7 @@ const chart9 = {
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
     "y": {"field": "Total", "type": "quantitative",
-      "scale": {"type": "log", "domainMin": 100}},
+      "scale": {"type": "log", "base": 10, "domainMin": 100}},
         "text": {"field": "Total", "type": "quantitative", "format": ",.0f"},
         "color": {"value": "#333"}
       }
@@ -767,6 +769,7 @@ const chart10 = {
       "as": ["geometry", "properties"]
     }
   ],
+  
   "projection": {"type": "mercator", "center": [109.5, 4], "scale": 1700},
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
   "encoding": {
@@ -843,7 +846,7 @@ const chart11 = {
       }
     },
     {
-      "transform": [{"filter": "datum.Year == 2024 && datum.Loss > 20"}],
+      "transform": [{"filter": "datum.Year == 2024 && datum.Loss > 55"}],
       "mark": {"type": "text", "dx": 8, "align": "left", "fontSize": 10, "fontWeight": "bold"},
       "encoding": {
         "text": {"field": "State", "type": "nominal"},
